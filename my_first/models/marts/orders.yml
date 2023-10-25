@@ -1,0 +1,73 @@
+version: 2
+
+# 'name' or 'email' is required; additional properties allowed
+groups:
+  - name: sales
+    owner:
+      email: alt_sales_team@alt.com
+      slack: alt_sales_team-slack-channel
+  - name: marketing
+    owner:
+      email: alt_marketing_team@alt.com
+      slack: alt_marketing_team-slack-channel
+
+models:
+  - name: orders
+    description: "Table of order level information"
+    # Set this model to be a part of the sales group we define above
+    # Groups can be defined in another yml file
+    config:
+      group: marketing
+    # 3 settings:
+    # Private - only other models in the same (sales) group can ref() this model
+    # Protected - only other models in the same group or project can ref() this model
+    # Public - any other model can ref() this model
+    access: protected
+
+    columns:
+      - name: order_id
+        description: "When the order was created"
+        tests:
+          - relationships:
+              to: ref('stg_ecommerce_orders')
+              field: order_id
+
+      - name: order_created_at
+        description: "When the order was created"
+
+      - name: order_returned_at
+        description: "When the order was returned"
+
+      - name: order_delivered_at
+        description: "When the order was delivered"
+
+      - name: order_shipped_at
+        description: "When the order was shipped"
+
+      - name: order_status
+        description:  "{{ doc('status') }}"
+
+      - name: num_items_ordered
+        description: "Number of items in the order"
+
+      - name: total_sale_price
+        description: "Sum of item_sale_price for the whole order"
+        tests:
+          - not_null
+
+      - name: total_product_cost
+        description: "Sum of product_cost for the whole order"
+        tests:
+          - not_null
+
+
+      - name: total_profit
+        description: "Sum of (item_sale_price - product_cost) for the whole order"
+        tests:
+          - not_null
+
+
+      - name: total_discount
+        description: "Sum of (product_retail_price - item_sale_price) for the whole order"
+        tests:
+          - not_null

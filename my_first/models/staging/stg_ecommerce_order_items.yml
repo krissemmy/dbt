@@ -1,0 +1,80 @@
+# version: 2
+
+# models:
+#   - name: stg_ecommerce_order_items
+#     description: "Line items from orders"
+#     columns:
+#       - name: order_item_id
+#         tests:
+#           - not_null
+#           - unique
+
+      # - name: order_id
+      #   tests:
+      #     - not_null
+      #     - relationships:
+      #         to: ref('stg_ecommerce_orders')
+      #         field: order_id
+
+      # - name: user_id
+      #   tests:
+      #     - not_null
+
+      # - name: product_id
+      #   tests:
+      #     - not_null
+      #     - relationships:
+      #         to: ref('stg_ecommerce_products')
+      #         field: product_id
+
+      # - name: item_sale_price
+      #   description: "How much the item sold for"
+      #   tests:
+      #     - not_null
+version: 2
+
+models:
+  - name: stg_ecommerce_order_items
+    description: "Line items from orders"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: order_item_id
+        tests:
+          - not_null:
+              severity: error
+          - unique:
+              severity: error
+        data_type: INTEGER
+        constraints:
+          - type: not_null
+
+      - name: order_id
+        data_type: INTEGER
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_ecommerce_orders')
+              field: order_id
+
+      - name: user_id
+        data_type: INTEGER
+        tests:
+          - not_null
+
+      - name: product_id
+        data_type: INTEGER
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_ecommerce_products')
+              field: product_id
+
+      - name: item_sale_price
+        data_type: FLOAT64
+        description: "How much the item sold for"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
