@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: dim_location
+  - name: dim_locations
     description: " Table describing and detailing every order on per row basis "
     columns:
       - name: location_id

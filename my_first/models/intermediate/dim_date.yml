@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: dim_date
+  - name: dim_dates
     description: "date id "
     columns:
       - name: date
