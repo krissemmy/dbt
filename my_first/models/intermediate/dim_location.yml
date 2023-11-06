@@ -1,0 +1,12 @@
+## Testing, documentation, Referencing and configuration
+version: 2
+
+models:
+  - name: dim_location
+    description: " Table describing and detailing every order on per row basis "
+    columns:
+      - name: location_id
+        description: "The order Id of the order"
+        tests:
+          - not_null
+          - unique
