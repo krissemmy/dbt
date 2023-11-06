@@ -3,7 +3,7 @@ version: 2
 
 models:
   - name: dim_reasons
-    description: "Table showing reason for evition"
+    description: "Table showing reason for eviction"
     columns:
       - name: reason_id
         description: "The order Id of the reasons"
