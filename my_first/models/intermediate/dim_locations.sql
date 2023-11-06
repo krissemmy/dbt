@@ -5,8 +5,8 @@ WITH dim_location AS (
         city,
         state,
         zip,
-        longitude,
-        latitude
+        client_location.longitude AS longitude,
+        client_location.latitude AS latitude
     FROM {{ ref("stg_eviction") }}
 )
 
