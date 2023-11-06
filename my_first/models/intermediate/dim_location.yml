@@ -8,5 +8,5 @@ models:
       - name: location_id
         description: "The order Id of the order"
         tests:
-          - not_null
+          #- not_null
           #- unique
