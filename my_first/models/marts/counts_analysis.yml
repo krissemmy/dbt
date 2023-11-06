@@ -1,0 +1,30 @@
+## Testing, documentation, Referencing and configuration
+version: 2
+
+models:
+  - name: count_late_payments
+    description: "Table showing the counts of each address for the number of evictions that are given due to late payment from tenant end"
+    columns:
+      - name: address
+        description: "The address"
+        tests:
+          - not_null
+          - unique
+
+  - name: count_non_payments
+    description: "Table showing the counts of each address for the number of evictions that are given due to tenants not paying"
+    columns:
+      - name: address
+        description: "The address which the evicton is been given"
+        tests:
+          - not_null
+          - unique
+
+  - name: count_not_signing_renewal
+    description: "Table showing the counts per address for the number of evictions that are given due to tenants or landlords not signing the renewal papers"
+    columns:
+      - name: address
+        description: "The address in which the eviction is been given"
+        tests:
+          - not_null
+          - unique
