@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: alt_data
+    database: nature-26092023
+    tables:
+      - name: eviction_data_table
