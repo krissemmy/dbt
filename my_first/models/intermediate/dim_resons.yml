@@ -1,0 +1,12 @@
+## Testing, documentation, Referencing and configuration
+version: 2
+
+models:
+  - name: dim_reason
+    description: " Table showing reason for evition"
+    columns:
+      - name: reason_id
+        description: "The order Id of the reasons"
+        tests:
+          - not_null
+          - unique

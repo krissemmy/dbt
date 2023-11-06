@@ -1,0 +1,12 @@
+## Testing, documentation, Referencing and configuration
+version: 2
+
+models:
+  - name: dim_date
+    description: "date id "
+    columns:
+      - name: date
+        description: "The order Id of the order"
+        tests:
+          - not_null
+          - unique
