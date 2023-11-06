@@ -9,19 +9,19 @@ location_data AS (
     SELECT
         location_id,
         ROW_NUMBER() OVER () AS location_row_number
-    FROM {{ ref('dim_location') }}
+    FROM {{ ref('dim_locations') }}
 ),
 reason_data AS (
     SELECT
         reason_id,
         ROW_NUMBER() OVER () AS reason_row_number
-    FROM {{ ref('dim_reason') }}
+    FROM {{ ref('dim_reasons') }}
 ),
 date_data AS (
     SELECT
         date,
         ROW_NUMBER() OVER () AS date_row_number
-    FROM {{ ref('dim_date') }}
+    FROM {{ ref('dim_dates') }}
 )
 SELECT
     source.eviction_id as eviction_id,
