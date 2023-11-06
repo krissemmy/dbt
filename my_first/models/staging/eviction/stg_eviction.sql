@@ -1,6 +1,6 @@
 with source as (
 
-    select * from {{ source('alt_data', 'eviction_data_table') }}
+    select * from {{ source('alt_data', 'eviction_data') }}
 
 ),
 
