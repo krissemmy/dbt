@@ -7,6 +7,6 @@ models:
     columns:
       - name: location_id
         description: "The order Id of the order"
-        tests:
+        #tests:
           #- not_null
           #- unique
